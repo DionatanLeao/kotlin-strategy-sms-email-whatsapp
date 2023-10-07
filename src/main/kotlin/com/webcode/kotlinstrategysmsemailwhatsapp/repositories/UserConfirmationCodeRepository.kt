@@ -1,0 +1,8 @@
+package com.webcode.kotlinstrategysmsemailwhatsapp.repositories
+
+import com.webcode.kotlinstrategysmsemailwhatsapp.entity.UserConfirmationCode
+import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface UserConfirmationCodeRepository: CrudRepository<UserConfirmationCode, Long>

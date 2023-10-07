@@ -1,0 +1,22 @@
+package com.webcode.kotlinstrategysmsemailwhatsapp.entity
+
+import java.time.LocalDateTime
+import javax.persistence.*
+
+@Entity
+@Table(name = "users_confirmation_code")
+data class UserConfirmationCode(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
+    @Column(name = "confirmation_code")
+    val confirmationCode: String?,
+
+    @Column(name = "creation_time")
+    val creationTime: LocalDateTime = LocalDateTime.now(),
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    val user: User?
+)
