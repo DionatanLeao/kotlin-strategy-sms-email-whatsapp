@@ -15,6 +15,8 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
 
+extra["springCloudVersion"] = "2021.0.7"
+
 repositories {
 	mavenCentral()
 }
@@ -24,10 +26,21 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.springframework.boot:spring-boot-starter-mail")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+	implementation("io.github.microutils:kotlin-logging:3.0.5")
+	implementation("org.hibernate:hibernate-annotations:3.5.6-Final")
+	implementation(kotlin("stdlib-jdk8"))
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+	}
 }
 
 tasks.withType<KotlinCompile> {
@@ -39,4 +52,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+	jvmTarget = "17"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+	jvmTarget = "17"
 }
