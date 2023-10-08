@@ -23,6 +23,10 @@ class UserConfirmationCodeService(
         )).user?.userConfirmationCode
     }
 
+    fun findByEmailAndCode(email: String, code: String): UserConfirmationCode? {
+        return userConfirmationCodeRepository.findByEmailAndCode(email, code)
+    }
+
     private fun generateConfirmationCode() = Random.nextInt(
             MIN_CODE_VALUE,
             MAX_CODE_VALUE + ONE
