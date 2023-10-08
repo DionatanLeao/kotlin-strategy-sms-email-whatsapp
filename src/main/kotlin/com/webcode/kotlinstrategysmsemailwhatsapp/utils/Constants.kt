@@ -1,6 +1,7 @@
 package com.webcode.kotlinstrategysmsemailwhatsapp.utils
 
 object Constants {
+    const val DEFAULT_SUBJECT_MAIL = "API KOTLIN - REGISTRO"
     const val CODE_LENGTH = 6
     const val MIN_CODE_VALUE = 100_000
     const val MAX_CODE_VALUE = 999_999

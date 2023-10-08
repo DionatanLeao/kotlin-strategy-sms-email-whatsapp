@@ -19,4 +19,10 @@ data class UserConfirmationCode(
     @OneToOne
     @JoinColumn(name = "user_id")
     val user: User?
-)
+) {
+    fun isValid(): Boolean {
+        val expirationLimit = creationTime.plusHours(1) // limite de validade de 1 hora
+        val currentTime = LocalDateTime.now()
+        return currentTime.isBefore(expirationLimit)
+    }
+}
